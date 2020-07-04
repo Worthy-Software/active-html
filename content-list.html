@@ -1,0 +1,50 @@
+<ul>
+  <li.Content
+    .includes(:likes, :authors)
+    .select('likes.user_id == current_user.id as liked?')
+    .each.content
+    @="content"
+  >
+    <img src={content.image_url} alt={content.name}>
+    <h2>{content.name}</h2>
+
+    <.partial.like-star
+      content={content}
+      afterLike={content.query.liked: true}
+      refresh="@content"
+    />
+
+    <a href="" onClick={content.client.more.toggle()}>more...</a>
+    <div.if.content.client.more?>
+      <div>
+        Written by
+        <span.content.authors.each.author>
+          <.if.author.client.last?}
+            and
+          </.if>
+          {author.name},
+        </span.content.authors>
+      </div>
+    </div>
+    <button onClick={content.destroy()}>Delete</button>
+  </li.Content.all>
+</ul>
+
+<!-->
+POST /likes
+{
+  like: { content_id: 1 }
+  _refresh: '@content',
+  _client: {
+    more: true,
+  }
+  _success: {
+    query.liked: true,
+  },
+}
+
+class Content
+  def liked?(user)
+    likes.find { |like| like.user_id == user.id }
+  end
+end

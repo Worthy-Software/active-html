@@ -1,0 +1,13 @@
+<.var.content = input.content/>
+
+<img.if.content.query.liked? src="/star.png" alt="Star" />
+
+<img.!if.content.query.liked?
+  src="/empty-star.png"
+  onClick={Like.create(
+    content: content,
+    user: current.user
+  )
+  .success(input.afterLike)}
+  refresh={input.refresh}
+/>
