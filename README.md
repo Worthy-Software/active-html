@@ -1,3 +1,7 @@
+## Active HTML
+
+Given input:
+
 ```
 <ul>
   <li.Content
@@ -32,6 +36,8 @@
 </ul>
 ```
 
+Expected output:
+
 ```
 <ul>
   <li id="content-1">
@@ -53,11 +59,14 @@
       </div>
     </div>
     <form action="/contents/1" method="DELETE">
+      <input type="hidden" name="_refresh" value="@content"/>
       <button>Delete</button>
     </form>
   </li.Content.all>
 </ul>
 ```
+
+Example request. Additional data is for backend to recreate state of frontend.
 
 ```
 POST /likes
@@ -72,6 +81,8 @@ POST /likes
   },
 }
 ```
+
+Additional model files to be used in the backend
 
 ```
 class Content
