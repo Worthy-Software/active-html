@@ -21,15 +21,13 @@ Given input:
 
     <a href="" onClick={content.client.more.toggle()}>more...</a>
     <div.if.content.client.more?>
-      <div>
-        Written by
-        <.content.authors.each.author>
-          <.if.content.authors.length > 2 && author.client.last?>
-            and
-          </.if>
-          {author.name},
-        </.content.authors>
-      </div>
+      Written by
+      <.content.authors.each.author>
+        <.if.content.authors.length > 2 && author.client.last?>
+          and
+        </.if>
+        {author.name},
+      </.content.authors>
     </div>
     <button onClick={content.destroy()} refresh="@content">Delete</button>
   </li.Content.all>
@@ -51,13 +49,12 @@ Expected output:
       onclick="API.post('/likes', { like: { content_id: 1 }, _client: { more: true }, _success: { query.liked: true }, refresh: '@content' })"
     />
 
-    <a href="" onclick="helper.toggle('content-1')">more...</a>
+    <a href="" onclick="helper.toggle('content-1-hyjh')">more...</a>
 
-    <div hidden>
-      <div>
-        Written by bookis, shane, and you
-      </div>
+    <div id="content-1-hyjh" hidden>
+      Written by bookis, shane, and you
     </div>
+
     <form action="/contents/1" method="DELETE">
       <input type="hidden" name="_refresh" value="@content"/>
       <button>Delete</button>
